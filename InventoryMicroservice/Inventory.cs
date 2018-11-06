@@ -22,6 +22,7 @@ namespace InventoryMicroservice
 
             if (name == null)
             {
+                //test
                 // Get request body
                 dynamic data = await req.Content.ReadAsAsync<object>();
                 name = data?.name;
