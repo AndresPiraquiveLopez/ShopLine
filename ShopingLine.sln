@@ -3,17 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopingLine", "ShopingLine\ShopingLine.csproj", "{A6D09BA2-ACFA-47A6-AB0A-9AE9C24DB1CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopingLineApi", "ShopingLine\ShopingLineApi.csproj", "{A6D09BA2-ACFA-47A6-AB0A-9AE9C24DB1CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryMicroservice", "InventoryMicroservice\InventoryMicroservice.csproj", "{A85E3924-99FE-472B-94D9-9FF592717960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InventoryMicroservice", "InventoryMicroservice\InventoryMicroservice.csproj", "{A85E3924-99FE-472B-94D9-9FF592717960}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogMicroservice", "CatalogMicroservice\CatalogMicroservice.csproj", "{8546EEF0-52D1-444E-B7A9-FF59DBDF2817}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogMicroservice", "CatalogMicroservice\CatalogMicroservice.csproj", "{8546EEF0-52D1-444E-B7A9-FF59DBDF2817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartMicroservice", "CartMicroservice\CartMicroservice.csproj", "{231F6EEA-AFAB-4CFD-A6DD-C63A440CFBB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartMicroservice", "CartMicroservice\CartMicroservice.csproj", "{231F6EEA-AFAB-4CFD-A6DD-C63A440CFBB6}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{7FCFC9AA-8421-4034-B1B7-B26AB6CCDF86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryBusinessLogic", "InventoryBusinessLogic\InventoryBusinessLogic.csproj", "{2B8755B8-FA6D-4161-A143-2A46FE6E19D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{687DE03E-4EDE-4D2A-8DF7-FB1A44BC4C9D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cart", "Cart", "{88E4788D-C652-4CAF-B354-0D5982D9DFD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{91A7E2EE-5F16-4A03-BC4E-5D5ED8BAE638}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +56,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A85E3924-99FE-472B-94D9-9FF592717960} = {91A7E2EE-5F16-4A03-BC4E-5D5ED8BAE638}
+		{8546EEF0-52D1-444E-B7A9-FF59DBDF2817} = {687DE03E-4EDE-4D2A-8DF7-FB1A44BC4C9D}
+		{231F6EEA-AFAB-4CFD-A6DD-C63A440CFBB6} = {88E4788D-C652-4CAF-B354-0D5982D9DFD7}
+		{2B8755B8-FA6D-4161-A143-2A46FE6E19D9} = {91A7E2EE-5F16-4A03-BC4E-5D5ED8BAE638}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1324E995-050B-43CF-8390-2B661B31278F}

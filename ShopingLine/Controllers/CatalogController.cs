@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ShopingLine.Controllers
 {
-    public class HomeController : Controller
+    public class CatalogController : Controller
     {
         public ActionResult Index()
         {

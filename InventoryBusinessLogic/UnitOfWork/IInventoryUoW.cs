@@ -8,7 +8,9 @@ namespace InventoryBusinessLogic.UnitOfWork
 {
     public interface IInventoryUoW
     {
-        void Transfert();
+        void TransfertQty();
+
+
 
     }
 }
