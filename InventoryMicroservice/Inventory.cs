@@ -2,6 +2,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InventoryMicroservice.Handlers;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
@@ -28,9 +29,13 @@ namespace InventoryMicroservice
                 name = data?.name;
             }
 
-            return name == null
-                ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
-                : req.CreateResponse(HttpStatusCode.OK, "Hello " + name);
+            UnityConfig.RegisterComponents();
+            //MapConfig.RegisterMapping();
+
+
+            new InventoryHandler(UnityConfig.Container).Run();
+
+            return req.CreateResponse(HttpStatusCode.OK, "Succes");
         }
     }
 }

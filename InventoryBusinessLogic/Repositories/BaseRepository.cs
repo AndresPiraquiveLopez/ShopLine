@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Inventory.DataAcces.Entities;
 using InventoryBusinessLogic.Models;
 
 namespace InventoryBusinessLogic.Repositories
@@ -34,7 +35,7 @@ namespace InventoryBusinessLogic.Repositories
             return Set.Add(item);
         }
 
-        public IEnumerable<ProductInventory> GetAll(params string[] propertiesToLoad)
+        public IEnumerable<Product> GetAll(params string[] propertiesToLoad)
         {
             IQueryable<T> set = Set;
             if (propertiesToLoad != null)
@@ -44,7 +45,7 @@ namespace InventoryBusinessLogic.Repositories
                     set = set.Include(property);
                 }
             }
-            return (IEnumerable<ProductInventory>) set;
+            return (IEnumerable<Product>) set;
         }
 
         public T Remove(T item)

@@ -10,7 +10,7 @@ namespace InventoryBusinessLogic.UnitOfWork
 {
     public class InventoryUoW : BaseUoW, IInventoryUoW
     {
-        protected InventoryUoW(IRepositoryProvider repositoryProvider) : base(repositoryProvider)
+        public InventoryUoW(IRepositoryProvider repositoryProvider) : base(repositoryProvider)
         {
         }
 
@@ -39,7 +39,11 @@ namespace InventoryBusinessLogic.UnitOfWork
 
         public IEnumerable<ProductInventory> GetAll()
         {
-            return ProductRepository.GetAll();           
+          
+                
+            var product = ProductRepository.GetAll().ToList();
+           
+            return null;
         }
 
         public ProductInventory Reserve(int id)
