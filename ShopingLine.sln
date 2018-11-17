@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cart", "Cart", "{88E4788D-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inventory", "Inventory", "{91A7E2EE-5F16-4A03-BC4E-5D5ED8BAE638}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogBusinessLogic", "CatalogBusinessLogic\CatalogBusinessLogic.csproj", "{471909E3-90E0-4E68-BAD1-8460A4FAA6DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{2B8755B8-FA6D-4161-A143-2A46FE6E19D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B8755B8-FA6D-4161-A143-2A46FE6E19D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B8755B8-FA6D-4161-A143-2A46FE6E19D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{471909E3-90E0-4E68-BAD1-8460A4FAA6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{471909E3-90E0-4E68-BAD1-8460A4FAA6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471909E3-90E0-4E68-BAD1-8460A4FAA6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{471909E3-90E0-4E68-BAD1-8460A4FAA6DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{8546EEF0-52D1-444E-B7A9-FF59DBDF2817} = {687DE03E-4EDE-4D2A-8DF7-FB1A44BC4C9D}
 		{231F6EEA-AFAB-4CFD-A6DD-C63A440CFBB6} = {88E4788D-C652-4CAF-B354-0D5982D9DFD7}
 		{2B8755B8-FA6D-4161-A143-2A46FE6E19D9} = {91A7E2EE-5F16-4A03-BC4E-5D5ED8BAE638}
+		{471909E3-90E0-4E68-BAD1-8460A4FAA6DA} = {687DE03E-4EDE-4D2A-8DF7-FB1A44BC4C9D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1324E995-050B-43CF-8390-2B661B31278F}
