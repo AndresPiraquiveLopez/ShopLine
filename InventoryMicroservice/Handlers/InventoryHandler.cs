@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using InventoryBusinessLogic.Models;
 using InventoryBusinessLogic.UnitOfWork;
+using Newtonsoft.Json;
 using Unity;
 
 namespace InventoryMicroservice.Handlers
@@ -17,9 +15,25 @@ namespace InventoryMicroservice.Handlers
             _uoW = container.Resolve<IInventoryUoW>();
         }
 
+        
+
+        public int Add(string json)
+        {
+            var products = JsonConvert.DeserializeObject<ProductInventory>(json);
+
+            return _uoW.AddToStockQty(products);
+        }
+
         public override void Run()
         {
-            _uoW.GetAll();
+            throw new NotImplementedException();
+        }
+
+        public void AdjStock(string json)
+        {
+            var product = JsonConvert.DeserializeObject<ProductInventory>(json);
+
+            _uoW.AdjStock(product.Qty, product.Id);
         }
     }
 }

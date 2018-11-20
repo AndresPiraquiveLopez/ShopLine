@@ -2,7 +2,7 @@
 using InventoryBusinessLogic.UnitOfWork;
 using Unity;
 
-namespace InventoryMicroservice
+namespace InventoryBusinessLogic.Initializers
 {
     public class UnityConfig
     {
@@ -10,7 +10,8 @@ namespace InventoryMicroservice
 
         public static void RegisterComponents()
         {
-            Container = new UnityContainer();
+            if (Container == null)
+                Container = new UnityContainer();
 
             Container.RegisterType<IRepositoryProvider, RepositoryProvider>();
             Container.RegisterType<IInventoryUoW, InventoryUoW>();

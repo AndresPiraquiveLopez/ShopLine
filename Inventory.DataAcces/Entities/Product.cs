@@ -23,5 +23,7 @@ namespace Inventory.DataAcces.Entities
         public decimal Cost { get; set; }
 
         public decimal SellPrice { get; set; }
+
+        public int Qty { get; set; }
     }
 }

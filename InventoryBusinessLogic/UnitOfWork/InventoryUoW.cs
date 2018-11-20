@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
 using Inventory.DataAcces.Entities;
 using InventoryBusinessLogic.Factories;
 using InventoryBusinessLogic.Models;
@@ -10,39 +12,59 @@ namespace InventoryBusinessLogic.UnitOfWork
 {
     public class InventoryUoW : BaseUoW, IInventoryUoW
     {
+        public IRepository<Product> ProductRepository => GetRepository<Product>();
+
         public InventoryUoW(IRepositoryProvider repositoryProvider) : base(repositoryProvider)
         {
         }
 
-                
-        public IRepository<Product> ProductRepository => GetRepository<Product>();
 
-        public void TransfertQty()
+        public void TransfertQty(int qty, int id)
         {
             throw new System.NotImplementedException();
         }
 
-        public void AddToStockQty()
+        public int AddToStockQty(ProductInventory productInventory)
         {
-            throw new System.NotImplementedException();
+            //var product = Mapper.Map<Product>(products);
+            var product = new Product
+            {
+                Id = productInventory.Id,
+                Code = productInventory.Code,
+                CategoryId = productInventory.CategoryId,
+                Name = productInventory.Name,
+                Cost = productInventory.Cost,
+                SellPrice = productInventory.SellPrice,
+                Qty = productInventory.Qty
+            };
+
+            ProductRepository.Add(product);
+
+            Commit();
+
+            return product.Id;
         }
+
+       
 
         public void Delete()
         {
             throw new System.NotImplementedException();
         }
 
-        public void AdjStock()
-        {
-            throw new System.NotImplementedException();
+        public void AdjStock(int qty, int id)
+        {           
+            var product = ProductRepository.GetAll().FirstOrDefault(i => i.Id == id);
+
+            if (product != null) product.Qty = qty;
+            Commit();
+
         }
 
         public IEnumerable<ProductInventory> GetAll()
         {
-          
-                
             var product = ProductRepository.GetAll().ToList();
-           
+
             return null;
         }
 
@@ -71,6 +93,21 @@ namespace InventoryBusinessLogic.UnitOfWork
             throw new System.NotImplementedException();
         }
 
-       
+        public int AddToStockQty()
+        {
+            var product = new Product
+            {
+                Id = 3,
+                CategoryId = 1,
+                Code = "AAA",
+                Name = "Subaru",
+                SellPrice = 15,
+                Cost = 15
+            };
+            ProductRepository.Add(product);
+            Commit();
+            
+            return product.Id;
+        }
     }
 }

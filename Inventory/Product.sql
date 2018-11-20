@@ -6,6 +6,7 @@
 	[Name] VARCHAR(100) NOT NULL,
 	[Cost]  DECIMAL (18, 2) NOT NULL DEFAULT 0 ,
 	[SellPrice]  DECIMAL (18, 2) NOT NULL DEFAULT 0 ,
-	 CONSTRAINT [FK_CategoryId_ProductCategory] FOREIGN KEY ([CategoryId]) REFERENCES [ProductCategory]([Id])
+	 [Qty] INT NULL DEFAULT 0, 
+    CONSTRAINT [FK_CategoryId_ProductCategory] FOREIGN KEY ([CategoryId]) REFERENCES [ProductCategory]([Id])
 		
 )

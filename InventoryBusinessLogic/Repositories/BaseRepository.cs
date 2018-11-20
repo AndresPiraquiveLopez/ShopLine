@@ -35,7 +35,7 @@ namespace InventoryBusinessLogic.Repositories
             return Set.Add(item);
         }
 
-        public IEnumerable<Product> GetAll(params string[] propertiesToLoad)
+        public IQueryable<T> GetAll(params string[] propertiesToLoad)
         {
             IQueryable<T> set = Set;
             if (propertiesToLoad != null)
@@ -45,7 +45,7 @@ namespace InventoryBusinessLogic.Repositories
                     set = set.Include(property);
                 }
             }
-            return (IEnumerable<Product>) set;
+            return set;
         }
 
         public T Remove(T item)

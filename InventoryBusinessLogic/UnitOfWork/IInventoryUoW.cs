@@ -9,13 +9,13 @@ namespace InventoryBusinessLogic.UnitOfWork
 {
     public interface IInventoryUoW
     {
-        void TransfertQty();
+        void TransfertQty(int qty, int id);
 
-        void AddToStockQty();
+        int AddToStockQty(ProductInventory products);
 
         void Delete();
 
-        void AdjStock();
+        void AdjStock(int qty, int id);
 
         IEnumerable<ProductInventory> GetAll();
 

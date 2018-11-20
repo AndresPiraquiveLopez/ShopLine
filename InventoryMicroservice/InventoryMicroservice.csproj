@@ -5,14 +5,16 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.14" />
-    <PackageReference Include="Unity" Version="4.0.2" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
+    <PackageReference Include="Unity" Version="5.8.11" />
+    <PackageReference Include="Unity.Mvc" Version="5.0.15" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InventoryBusinessLogic\InventoryBusinessLogic.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">
