@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Inventory.DataAcces.Entities;
 using InventoryBusinessLogic.Models;
 
@@ -20,7 +21,9 @@ namespace InventoryBusinessLogic.Repositories
         /// <param name="item">The item of type <typeparamref name="T"/> to remove</param>
         /// <returns>The item of type <typeparamref name="T"/></returns>
         T Remove(T item);
-        IEnumerable<Product> GetAll(params string[] propertiesToLoad);
+
+        IQueryable<T> GetAll(params string[] propertiesToLoad);
+
         IQueryable<T> GetAllLocal();
     }
 }
