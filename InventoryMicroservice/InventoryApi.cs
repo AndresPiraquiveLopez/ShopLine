@@ -10,7 +10,7 @@ using Microsoft.Azure.WebJobs.Host;
 
 namespace InventoryMicroservice
 {
-    public static class Inventory
+    public static class InventoryApi
     {
         [FunctionName("AddProduct")]
         public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
