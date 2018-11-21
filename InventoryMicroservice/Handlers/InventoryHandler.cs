@@ -35,5 +35,19 @@ namespace InventoryMicroservice.Handlers
 
             _uoW.AdjStock(product.Qty, product.Id);
         }
+
+        public void TransfertQty(string json)
+        {
+            var product = JsonConvert.DeserializeObject<ProductInventory>(json);
+
+            _uoW.TransfertQty(product.Qty, product.Id);
+        }
+
+        public void Delete(string json)
+        {
+            var product = JsonConvert.DeserializeObject<ProductInventory>(json);
+
+            _uoW.Delete(product.Id);
+        }
     }
 }

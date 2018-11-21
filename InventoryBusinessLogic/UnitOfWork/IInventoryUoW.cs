@@ -13,8 +13,8 @@ namespace InventoryBusinessLogic.UnitOfWork
 
         int AddToStockQty(ProductInventory products);
 
-        void Delete();
-
+        void Delete(int id);
+        
         void AdjStock(int qty, int id);
 
         IEnumerable<ProductInventory> GetAll();

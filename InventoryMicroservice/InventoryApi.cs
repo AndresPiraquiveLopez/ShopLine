@@ -68,5 +68,61 @@ namespace InventoryMicroservice
             return req.CreateResponse(HttpStatusCode.OK, "Succes");
         }
 
+        [FunctionName("TransfertQty")]
+        public static async Task<HttpResponseMessage> Run2([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
+        {
+            log.Info("C# HTTP trigger function processed a request.");
+
+            // parse query parameter
+            string name = req.GetQueryNameValuePairs()
+                .FirstOrDefault(q => string.Compare(q.Key, "name", true) == 0)
+                .Value;
+
+            object data = null;
+
+            if (name == null)
+            {
+                //test
+                // Get request body
+                data = await req.Content.ReadAsAsync<object>();
+            }
+
+            UnityConfig.RegisterComponents();
+            MapConfig.RegisterMapping();
+
+
+            new InventoryHandler(UnityConfig.Container).TransfertQty(data.ToString());
+
+            return req.CreateResponse(HttpStatusCode.OK, "Succes");
+        }
+
+        [FunctionName("Delete")]
+        public static async Task<HttpResponseMessage> Run3([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
+        {
+            log.Info("C# HTTP trigger function processed a request.");
+
+            // parse query parameter
+            string name = req.GetQueryNameValuePairs()
+                .FirstOrDefault(q => string.Compare(q.Key, "name", true) == 0)
+                .Value;
+
+            object data = null;
+
+            if (name == null)
+            {
+                //test
+                // Get request body
+                data = await req.Content.ReadAsAsync<object>();
+            }
+
+            UnityConfig.RegisterComponents();
+            MapConfig.RegisterMapping();
+
+
+            new InventoryHandler(UnityConfig.Container).Delete(data.ToString());
+
+            return req.CreateResponse(HttpStatusCode.OK, "Succes");
+        }
+
     }
 }

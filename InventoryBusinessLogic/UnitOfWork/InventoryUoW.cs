@@ -26,7 +26,7 @@ namespace InventoryBusinessLogic.UnitOfWork
 
         public int AddToStockQty(ProductInventory productInventory)
         {
-            //var product = Mapper.Map<Product>(products);
+            //var product = Mapper.Map<Product>(productInventory);
             var product = new Product
             {
                 Id = productInventory.Id,
@@ -45,11 +45,12 @@ namespace InventoryBusinessLogic.UnitOfWork
             return product.Id;
         }
 
-       
-
-        public void Delete()
+        public void Delete(int id)
         {
-            throw new System.NotImplementedException();
+            var product = ProductRepository.GetAll().FirstOrDefault(p => p.Id == id);
+
+            ProductRepository.Remove(product);
+            Commit();
         }
 
         public void AdjStock(int qty, int id)

@@ -45,7 +45,8 @@ namespace InventoryUoWTest
                 CategoryId = 1,
                 Cost = 10,
                 SellPrice = 5,
-                Name = "TOTO"
+                Name = "TOTO",
+                Qty = 1
             };
 
            _mock.CreateRepository<Product>().GetAll().First();            
