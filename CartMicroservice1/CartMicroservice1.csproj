@@ -1,16 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <AzureFunctionsVersion>v1</AzureFunctionsVersion>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.14" />
     <PackageReference Include="Unity" Version="5.8.11" />
     <PackageReference Include="Unity.Container" Version="5.8.11" />
   </ItemGroup>

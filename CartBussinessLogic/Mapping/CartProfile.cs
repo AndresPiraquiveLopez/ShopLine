@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
+using Cart.DataAcces.Entities;
+using CartBusinessLogic.Models;
 
-
-namespace CartBussinessLogic.Mapping
+namespace CartBusinessLogic.Mapping
 {
-    public class InventoryProfile : Profile
+    public class CartProfile : Profile
     {
-        public InventoryProfile()
+        public CartProfile()
         {
-            //CreateMap<ProductInventory, Product>();
+            CreateMap<ProductModel, Product>();
         }
     }
 }

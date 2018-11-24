@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace CartBussinessLogic.Repositories
+namespace CartBusinessLogic.Repositories
 {
     public interface IRepository<T> where T : class
     {

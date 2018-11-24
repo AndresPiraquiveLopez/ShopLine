@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CartBussinessLogic.Factories;
-using CartBussinessLogic.Repositories;
+using CartBusinessLogic.Factories;
+using CartBusinessLogic.Repositories;
 
-namespace CartBussinessLogic.UnitOfWork
+namespace CartBusinessLogic.UnitOfWork
 {
     public class BaseUoW : IDisposable
     {

@@ -59,6 +59,11 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Cart.sql" />
+    <Build Include="Category.sql" />
+    <Build Include="Product.sql" />
+    <Build Include="CartItem.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CartDb.refactorlog" />
   </ItemGroup>
 </Project>

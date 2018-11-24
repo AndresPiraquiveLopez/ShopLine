@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 
-namespace CartBussinessLogic.Repositories
+namespace CartBusinessLogic.Repositories
 {
     public class BaseRepository<T> : IRepository<T> where T : class
     {
