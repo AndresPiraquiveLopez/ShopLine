@@ -1,6 +1,6 @@
 ﻿namespace InventoryBusinessLogic.Models
 {
-    public class ProdCategory
+    public class ProductCategoryModel
     {
         public int Id { get; set; }
 

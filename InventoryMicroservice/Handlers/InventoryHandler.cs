@@ -19,9 +19,9 @@ namespace InventoryMicroservice.Handlers
 
         public int Add(string json)
         {
-            var products = JsonConvert.DeserializeObject<ProductInventory>(json);
+            var product = JsonConvert.DeserializeObject<ProductInventoryModel>(json);
 
-            return _uoW.AddToStockQty(products);
+            return _uoW.AddToStock(product.Qty, product.ProductId);
         }
 
         public override void Run()
@@ -31,23 +31,23 @@ namespace InventoryMicroservice.Handlers
 
         public void AdjStock(string json)
         {
-            var product = JsonConvert.DeserializeObject<ProductInventory>(json);
+            var stock = JsonConvert.DeserializeObject<StockModel>(json);
 
-            _uoW.AdjStock(product.Qty, product.Id);
+            _uoW.AdjStock(stock.StockId, stock.Qty, stock.ProductId);
         }
 
         public void TransfertQty(string json)
         {
-            var product = JsonConvert.DeserializeObject<ProductInventory>(json);
-
-            _uoW.TransfertQty(product.Qty, product.Id);
+            var productInventory = JsonConvert.DeserializeObject<ProductInventoryModel>(json);
+        
+            _uoW.TransfertQty(productInventory.Qty, productInventory.From, productInventory.To);
         }
 
         public void Delete(string json)
         {
-            var product = JsonConvert.DeserializeObject<ProductInventory>(json);
+            var product = JsonConvert.DeserializeObject<ProductInventoryModel>(json);
 
-            _uoW.Delete(product.Id);
+            _uoW.RemoveFrom(product.Id);
         }
     }
 }

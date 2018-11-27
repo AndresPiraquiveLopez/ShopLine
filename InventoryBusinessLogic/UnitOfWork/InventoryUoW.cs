@@ -14,101 +14,98 @@ namespace InventoryBusinessLogic.UnitOfWork
     {
         public IRepository<Product> ProductRepository => GetRepository<Product>();
 
+        public IRepository<Stock>StockRepository => GetRepository<Stock>();
+
         public InventoryUoW(IRepositoryProvider repositoryProvider) : base(repositoryProvider)
         {
         }
 
 
-        public void TransfertQty(int qty, int id)
+        public void TransfertQty(int qty, string from, string to)
         {
             throw new System.NotImplementedException();
-        }
+        }       
 
-        public int AddToStockQty(ProductInventory productInventory)
-        {
-            //var product = Mapper.Map<Product>(productInventory);
-            var product = new Product
+        public int AddToStock(int qty, int id)
+        {           
+            var stock = new Stock
             {
-                Id = productInventory.Id,
-                Code = productInventory.Code,
-                CategoryId = productInventory.CategoryId,
-                Name = productInventory.Name,
-                Cost = productInventory.Cost,
-                SellPrice = productInventory.SellPrice,
-                Qty = productInventory.Qty
+                StockId = 0,                
+                ProductId = id,
+                Qty = qty
             };
 
-            ProductRepository.Add(product);
+            StockRepository.Add(stock);
 
             Commit();
 
-            return product.Id;
+            return stock.ProductId;
         }
 
-        public void Delete(int id)
+        public void RemoveFrom(int id)
         {
-            var product = ProductRepository.GetAll().FirstOrDefault(p => p.Id == id);
+            var product = ProductRepository.GetAll().FirstOrDefault(p => p.ProductId == id);
 
             ProductRepository.Remove(product);
             Commit();
         }
 
-        public void AdjStock(int qty, int id)
+        public void AdjStock(int stockId, int qty, int id)
         {           
-            var product = ProductRepository.GetAll().FirstOrDefault(i => i.Id == id);
+            var stock = StockRepository.GetAll().FirstOrDefault(i => i.ProductId == id && i.StockId == stockId);
 
-            if (product != null) product.Qty = qty;
+            if (stock != null) stock.Qty = qty;
             Commit();
 
         }
 
-        public IEnumerable<ProductInventory> GetAll()
-        {
-            var product = ProductRepository.GetAll().ToList();
+        //public IEnumerable<ProductInventory> GetAll()
+        //{
+        //    var product = ProductRepository.GetAll().ToList();
 
-            return null;
-        }
+        //    return null;
+        //}
 
-        public ProductInventory Reserve(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public ProductInventory Reserve(int id)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
 
-        public ProductInventory UnReserve(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public ProductInventory UnReserve(int id)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
 
-        public void Receive(IEnumerable<ProductInventory> items)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public void Receive(IEnumerable<ProductInventory> items)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
 
-        public void Order(IEnumerable<ProductInventory> items)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public void Order(IEnumerable<ProductInventory> items)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
 
-        public int CheckMinQty(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+        //public int CheckMinQty(int id)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
 
-        public int AddToStockQty()
-        {
-            var product = new Product
-            {
-                Id = 3,
-                CategoryId = 1,
-                Code = "AAA",
-                Name = "Subaru",
-                SellPrice = 15,
-                Cost = 15
-            };
-            ProductRepository.Add(product);
-            Commit();
+        //public int AddToStockQty()
+        //{
+        //    var product = new Product
+        //    {
+        //        Id = 3,
+        //        CategoryId = 1,
+        //        Code = "AAA",
+        //        Name = "Subaru",
+        //        SellPrice = 15,
+        //        Cost = 15
+        //    };
+        //    ProductRepository.Add(product);
+        //    Commit();
             
-            return product.Id;
-        }
+        //    return product.Id;
+        //}
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using AutoFixture;
 using Inventory.DataAcces.Entities;
 using InventoryBusinessLogic.Models;
 using InventoryBusinessLogic.UnitOfWork;
 using InventoryUoWTest.Mocking;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
 namespace InventoryUoWTest
 {
@@ -25,7 +23,7 @@ namespace InventoryUoWTest
         {
             _fixture = new Fixture { RepeatCount = 1 };
             _mock = new MockRepositoryProvider(_fixture);
-        
+
 
             // in most cases only one item is required for tests, do not force to have the 12
             // as set in MockRepositoryProvider
@@ -38,24 +36,20 @@ namespace InventoryUoWTest
         public void GetAddToStockQty_MoreThanZero()
         {
             //arange                       
-            var product = new ProductInventory
+            var stock = new StockModel
             {
-                Id = 1,
-                Code = "AAA",
-                CategoryId = 1,
-                Cost = 10,
-                SellPrice = 5,
-                Name = "TOTO",
-                Qty = 1
+                StockId = 1,
+                ProductId = 1,
+                Qty = 10
             };
 
-           _mock.CreateRepository<Product>().GetAll().First();            
+            _mock.CreateRepository<Stock>().GetAll().First();
 
             //act
-            var result = _sut.AddToStockQty(product);
+            var result = _sut.AddToStock(stock.Qty, stock.ProductId);
 
             //assert
-            Assert.IsTrue(result > 0);            
+            Assert.IsTrue(result == 1);
         }
 
     }

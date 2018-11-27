@@ -114,8 +114,10 @@
     <Compile Include="Initializers\MapConfig.cs" />
     <Compile Include="Initializers\UnityConfig.cs" />
     <Compile Include="Mapping\InventoryProfile.cs" />
-    <Compile Include="Models\ProdCategory.cs" />
-    <Compile Include="Models\ProductInventory.cs" />
+    <Compile Include="Models\ProductCategoryModel.cs" />
+    <Compile Include="Models\ProductInventoryModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Models\StockModel.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="UnitOfWork\BaseUoW.cs" />
