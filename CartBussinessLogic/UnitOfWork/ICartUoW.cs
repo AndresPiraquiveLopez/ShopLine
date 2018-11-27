@@ -1,29 +1,17 @@
 ﻿using System.Collections.Generic;
-using CartBussinessLogic.Models;
+using CartBusinessLogic.Models;
 
-namespace CartBussinessLogic.UnitOfWork
+namespace CartBusinessLogic.UnitOfWork
 {
     public interface ICartUoW
     {
-        //void TransfertQty(int qty, int id);
-
-        //int AddToStockQty(ProductInventory products);
-
-        //void Delete(int id);
-        
-        //void AdjStock(int qty, int id);
-
-        //IEnumerable<ProductInventory> GetAll();
-
-        //ProductInventory Reserve(int id);
-
-        //ProductInventory UnReserve(int id);
-
-        //void Receive(IEnumerable<ProductInventory> items);
-
-        //void Order(IEnumerable<ProductInventory> items);
-
-        //int CheckMinQty(int id);
-        
+        void AddItem(ProductModel newProduct);
+        int GetCartId();
+        List<CartItemModel> GetCartItems();
+        decimal GetTotal();
+        void RemoveItem(string cartId, int productId);
+        void UpdateQtyItem(string cartId, int productId, int qty);
+        int GetNbrItems();
+        void EmptyCart();
     }
 }

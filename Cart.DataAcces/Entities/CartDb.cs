@@ -2,13 +2,18 @@
 
 namespace Cart.DataAcces.Entities
 {
-    public class InventoryDb : DbContext
+    public class CartDb : DbContext
     {
-        public InventoryDb() : base("name=CartDb")
+        public CartDb() : base("name=CartDb")
         {
         }
 
-        public virtual DbSet<Cart> Cart { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+
+        public virtual DbSet<Category> Categories { get; set; }
+
+        public virtual DbSet<CartItem> ShoppingCartItems { get; set; }
 
     }
+
 }

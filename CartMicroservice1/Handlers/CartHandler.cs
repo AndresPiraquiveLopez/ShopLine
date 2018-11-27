@@ -17,11 +17,11 @@ namespace CartMicroservice.Handlers
 
 
 
-        public int AddItem(string json)
+        public void AddItem(string json)
         {
-            var products = JsonConvert.DeserializeObject<Product>(json);
+            var products = JsonConvert.DeserializeObject<ProductModel>(json);
 
-            return _uoW.AddItem(products);
+            _uoW.AddItem(products);
         }
 
         public override void Run()

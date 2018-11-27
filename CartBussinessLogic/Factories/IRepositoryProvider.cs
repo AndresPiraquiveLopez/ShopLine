@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CartBussinessLogic.Repositories;
+using CartBusinessLogic.Repositories;
 
-namespace CartBussinessLogic.Factories
+namespace CartBusinessLogic.Factories
 {
     public interface IRepositoryProvider: IDisposable
     {

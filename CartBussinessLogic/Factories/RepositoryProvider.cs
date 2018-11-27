@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using Cart.DataAcces.Entities;
-using CartBussinessLogic.Repositories;
+using CartBusinessLogic.Repositories;
 
-namespace CartBussinessLogic.Factories
+namespace CartBusinessLogic.Factories
 {
     public class RepositoryProvider : IRepositoryProvider
     {
@@ -25,7 +25,7 @@ namespace CartBussinessLogic.Factories
         protected virtual IRepository<T> MakeRepository<T>() where T : class
         {
             //create repository
-            var context = CreateContext<InventoryDb>();
+            var context = CreateContext<CartDb>();
             var repository = new BaseRepository<T>(context);
             //insert repository in dictionary
             Repositories[typeof(T)] = repository;

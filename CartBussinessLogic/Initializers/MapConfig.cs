@@ -1,8 +1,8 @@
 ﻿using System;
 using AutoMapper;
-using CartBussinessLogic.Mapping;
+using CartBusinessLogic.Mapping;
 
-namespace InventoryBusinessLogic.Initializers
+namespace CartBusinessLogic.Initializers
 {
     public class MapConfig
     {
@@ -11,7 +11,7 @@ namespace InventoryBusinessLogic.Initializers
             Mapper.Reset();
             Mapper.Initialize(configuration =>
                 {
-                    configuration.AddProfiles(typeof(InventoryProfile).Assembly);
+                    configuration.AddProfiles(typeof(CartProfile).Assembly);
                 }
             );
         }

@@ -96,14 +96,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Factories\IRepositoryProvider.cs" />
     <Compile Include="Factories\RepositoryProvider.cs" />
     <Compile Include="Initializers\MapConfig.cs" />
     <Compile Include="Initializers\UnityConfig.cs" />
     <Compile Include="Mapping\CartProfile.cs" />
-    <Compile Include="Models\ProdCategory.cs" />
-    <Compile Include="Models\ProductInventory.cs" />
+    <Compile Include="Models\CartItemModel.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />

@@ -1,8 +1,8 @@
-﻿using CartBussinessLogic.Factories;
-using CartBussinessLogic.UnitOfWork;
+﻿using CartBusinessLogic.Factories;
+using CartBusinessLogic.UnitOfWork;
 using Unity;
 
-namespace CartBussinessLogic.Initializers
+namespace CartBusinessLogic.Initializers
 {
     public class UnityConfig
     {
