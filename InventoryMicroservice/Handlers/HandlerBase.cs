@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity;
+﻿using Unity;
 
 namespace InventoryMicroservice.Handlers
 {
@@ -16,7 +11,7 @@ namespace InventoryMicroservice.Handlers
             Container = container;
         }
 
-        public abstract void Run();
+        //public abstract void Run();
     }
 
     public abstract class HandlerBase<TResponse>
@@ -27,6 +22,6 @@ namespace InventoryMicroservice.Handlers
             Container = container;
         }
 
-        public abstract TResponse Run();
+        //public abstract TResponse Run();
     }
 }

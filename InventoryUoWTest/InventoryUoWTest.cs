@@ -46,7 +46,7 @@ namespace InventoryUoWTest
             _mock.CreateRepository<Stock>().GetAll().First();
 
             //act
-            var result = _sut.AddToStock(stock.Qty, stock.ProductId);
+            var result = _sut.AddToStock(stock);
 
             //assert
             Assert.IsTrue(result == 1);

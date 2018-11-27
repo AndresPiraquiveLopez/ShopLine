@@ -8,7 +8,9 @@ namespace Inventory.DataAcces.Entities
     {
         [Key]
         public int StockId { get; set; }
- 
+
+        public string Name { get; set; }
+
         public int ProductId { get; set; }
 
         [ForeignKey("ProductId")]

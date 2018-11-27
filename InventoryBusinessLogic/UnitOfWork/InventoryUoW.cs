@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -21,25 +22,55 @@ namespace InventoryBusinessLogic.UnitOfWork
         }
 
 
-        public void TransfertQty(int qty, string from, string to)
+        public void TransfertQtyStock(TransfertStockModel transfertStockModel)
         {
-            throw new System.NotImplementedException();
+            var fromStock = StockRepository.GetAll().Include("Product").FirstOrDefault(s => s.ProductId == transfertStockModel.ProductId && s.StockId == transfertStockModel.FromStockId);
+
+            if (fromStock?.ProductId == null) return;
+            {
+                var toStock = StockRepository.GetAll().FirstOrDefault(s => s.StockId == transfertStockModel.ToStockId 
+                                                                           && s.ProductId == transfertStockModel.ProductId);
+
+                if (toStock != null)
+                {
+                    toStock.Qty = transfertStockModel.Qty + toStock.Qty;
+                    fromStock.Qty = fromStock.Qty - transfertStockModel.Qty;
+                }
+
+                Commit();
+            }
+
+            //Return message to say the productId is null or the product does not exist
         }       
 
-        public int AddToStock(int qty, int id)
-        {           
-            var stock = new Stock
+        public int AddToStock(StockModel stockModel)
+        {            
+            var stockBd = StockRepository.GetAll().FirstOrDefault(s => s.StockId == stockModel.StockId);
+            var stock = Mapper.Map<Stock>(stockModel);
+
+            if (stockBd != null)
             {
-                StockId = 0,                
-                ProductId = id,
-                Qty = qty
-            };
-
-            StockRepository.Add(stock);
-
+                stockBd.Qty = stockBd.Qty + stockModel.Qty;
+            }
+            else
+            {                
+                StockRepository.Add(stock);
+            }
+          
             Commit();
+            return stockModel.ProductId;
+        }
+      
+        public void RemoveFromStock(string name)
+        {
+            var stock = StockRepository.GetAll().FirstOrDefault(s => s.Name == name);
 
-            return stock.ProductId;
+            if (stock != null)
+            {
+                StockRepository.Remove(stock);
+                Commit();
+            }
+         
         }
 
         public void RemoveFrom(int id)
@@ -50,11 +81,13 @@ namespace InventoryBusinessLogic.UnitOfWork
             Commit();
         }
 
-        public void AdjStock(int stockId, int qty, int id)
+        public void AdjStock(StockModel stiockModel)
         {           
-            var stock = StockRepository.GetAll().FirstOrDefault(i => i.ProductId == id && i.StockId == stockId);
+            var stock = StockRepository.GetAll().FirstOrDefault(s => s.ProductId == stiockModel.ProductId 
+                                                                && s.StockId == stiockModel.StockId);
 
-            if (stock != null) stock.Qty = qty;
+            if (stock != null) stock.Qty = stiockModel.Qty;
+
             Commit();
 
         }

@@ -104,9 +104,6 @@
     <Reference Include="Unity.Container, Version=5.8.11.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.Container.5.8.11\lib\net46\Unity.Container.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Microsoft.DependencyInjection, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.Microsoft.DependencyInjection.2.1.1\lib\netstandard2.0\Unity.Microsoft.DependencyInjection.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factories\IRepositoryProvider.cs" />
@@ -118,12 +115,15 @@
     <Compile Include="Models\ProductInventoryModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\StockModel.cs" />
+    <Compile Include="Models\TransfertStockModel.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="UnitOfWork\BaseUoW.cs" />
     <Compile Include="UnitOfWork\IInventoryUoW.cs" />
     <Compile Include="UnitOfWork\InventoryUoW.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork\IProductInventoryUoW.cs" />
+    <Compile Include="UnitOfWork\ProductInventoryUoW.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

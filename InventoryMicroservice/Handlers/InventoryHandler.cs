@@ -8,46 +8,53 @@ namespace InventoryMicroservice.Handlers
 {
     public class InventoryHandler : HandlerBase
     {
-        private readonly IInventoryUoW _uoW;
+        private readonly IInventoryUoW _inventoryUoW;
+
+        private readonly IProductInventoryUoW _productInventoryUoW;
 
         public InventoryHandler(IUnityContainer container) : base(container)
         {
-            _uoW = container.Resolve<IInventoryUoW>();
+            _inventoryUoW = container.Resolve<IInventoryUoW>();
+
+            _productInventoryUoW = container.Resolve<IProductInventoryUoW>();
         }
 
-        
 
-        public int Add(string json)
+        public int AddToStock(string json)
         {
-            var product = JsonConvert.DeserializeObject<ProductInventoryModel>(json);
+            var stock = JsonConvert.DeserializeObject<StockModel>(json);
 
-            return _uoW.AddToStock(product.Qty, product.ProductId);
-        }
-
-        public override void Run()
-        {
-            throw new NotImplementedException();
+            return _inventoryUoW.AddToStock(stock);
         }
 
         public void AdjStock(string json)
         {
             var stock = JsonConvert.DeserializeObject<StockModel>(json);
 
-            _uoW.AdjStock(stock.StockId, stock.Qty, stock.ProductId);
+            _inventoryUoW.AdjStock(stock);
         }
 
-        public void TransfertQty(string json)
+        public void TransfertQtyStock(string json)
         {
-            var productInventory = JsonConvert.DeserializeObject<ProductInventoryModel>(json);
-        
-            _uoW.TransfertQty(productInventory.Qty, productInventory.From, productInventory.To);
+            var transfertStock = JsonConvert.DeserializeObject<TransfertStockModel>(json);
+
+            _inventoryUoW.TransfertQtyStock(transfertStock);
         }
 
-        public void Delete(string json)
+        public void RemoveFromStock(string json)
         {
-            var product = JsonConvert.DeserializeObject<ProductInventoryModel>(json);
+            var name = JsonConvert.DeserializeObject<string>(json);
 
-            _uoW.RemoveFrom(product.Id);
+            _inventoryUoW.RemoveFromStock(name);
         }
+
+        public void AddProduct(string json)
+        {
+            var product = JsonConvert.DeserializeObject<ProductModel>(json);
+
+            _productInventoryUoW.AddProduct(product);
+        }
+
+
     }
 }
