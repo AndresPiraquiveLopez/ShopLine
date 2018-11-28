@@ -37,13 +37,15 @@ namespace InventoryUoWTest
         public void GetAddToStockQty_ForProduct()
         {
             //arange                       
-            var stock = new StockModel
-            {
-                StockId = 1,
-                ProductId = 1,
-                Name = "MTL",
-                Qty = 10
-            };
+            //var stock = new StockModel
+            //{
+            //    StockId = 1,
+            //    ProductId = 1,
+            //    Name = "MTL",
+            //    Qty = 10
+            //};
+
+            var stock = _fixture.Create<StockModel>();
 
             _mock.CreateRepository<Stock>().GetAll().First();
 
@@ -58,13 +60,15 @@ namespace InventoryUoWTest
         public void RemoveFrom_FromStock()
         {
             //arange                       
-            var stock = new StockModel
-            {
-                StockId = 1,
-                ProductId = 1,
-                Qty = 10,
-                Name = "MTL"
-            };
+            //var stock = new StockModel
+            //{
+            //    StockId = 1,
+            //    ProductId = 1,
+            //    Qty = 10,
+            //    Name = "MTL"
+            //};
+
+            var stock = _fixture.Create<StockModel>();
 
             var stockMock = _mock.CreateRepository<Stock>().GetAll().First();
             stockMock.Name = stock.Name;

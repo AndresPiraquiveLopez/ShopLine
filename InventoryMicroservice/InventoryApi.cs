@@ -152,5 +152,33 @@ namespace InventoryMicroservice
             return req.CreateResponse(HttpStatusCode.OK, "Succes");
         }
 
+        [FunctionName("GetProduct")]
+        public static async Task<HttpResponseMessage> GetProduct([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
+        {
+            log.Info("C# HTTP trigger function processed a request.");
+
+            // parse query parameter
+            string name = req.GetQueryNameValuePairs()
+                .FirstOrDefault(q => string.Compare(q.Key, "name", true) == 0)
+                .Value;
+
+            object data = null;
+
+            if (name == null)
+            {
+                //test
+                // Get request body
+                data = await req.Content.ReadAsAsync<object>();
+            }
+
+            UnityConfig.RegisterComponents();
+            MapConfig.RegisterMapping();
+
+
+            var product = new InventoryHandler(UnityConfig.Container).GetProduct(data.ToString());
+
+            return req.CreateResponse(HttpStatusCode.OK, "Succes");
+        }
+
     }
 }

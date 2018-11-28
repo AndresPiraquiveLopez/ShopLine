@@ -41,7 +41,7 @@ namespace InventoryUoWTest.Mocking
             _fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                 .ForEach(b => _fixture.Behaviors.Remove(b));
             _fixture.Behaviors.Add(new OmitOnRecursionBehavior(2));
-            _fixture.RepeatCount = 12;
+            _fixture.RepeatCount = 3;
         }
 
         public IRepository<T> CreateRepository<T>() where T : class

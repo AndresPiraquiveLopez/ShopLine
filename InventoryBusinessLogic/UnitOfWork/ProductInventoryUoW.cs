@@ -63,6 +63,11 @@ namespace InventoryBusinessLogic.UnitOfWork
         public int CheckMinQty(int id)
         {
             throw new NotImplementedException();
-        }    
+        }
+
+        public List<ProductModel> GetProduct(string productId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

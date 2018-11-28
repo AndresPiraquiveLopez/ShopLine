@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using InventoryBusinessLogic.Models;
 using InventoryBusinessLogic.UnitOfWork;
 using Newtonsoft.Json;
@@ -43,9 +44,9 @@ namespace InventoryMicroservice.Handlers
 
         public void RemoveFromStock(string json)
         {
-            var name = JsonConvert.DeserializeObject<string>(json);
+            var stockModel = JsonConvert.DeserializeObject<StockModel>(json);
 
-            _inventoryUoW.RemoveFromStock(name);
+            _inventoryUoW.RemoveFromStock(stockModel.Name);
         }
 
         public void AddProduct(string json)
@@ -59,6 +60,11 @@ namespace InventoryMicroservice.Handlers
         public override void Run()
         {
             throw new NotImplementedException();
+        }
+
+        public List<ProductModel> GetProduct(string productId)
+        {
+            return _productInventoryUoW.GetProduct(productId);
         }
     }
 }

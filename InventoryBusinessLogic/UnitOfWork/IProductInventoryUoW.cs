@@ -22,5 +22,6 @@ namespace InventoryBusinessLogic.UnitOfWork
         void Order(IEnumerable<ProductInventoryModel> items);
 
         int CheckMinQty(int id);
+        List<ProductModel> GetProduct(string productId);
     }
 }
