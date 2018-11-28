@@ -10,6 +10,7 @@ namespace InventoryBusinessLogic.Mapping
         {
             CreateMap<ProductInventoryModel, Product>();
             CreateMap<StockModel, Stock>();
+            CreateMap<Stock, StockModel>();
             CreateMap<ProductModel, Product>();
         }
     }

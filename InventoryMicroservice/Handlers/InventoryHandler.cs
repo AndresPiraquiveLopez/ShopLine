@@ -56,5 +56,9 @@ namespace InventoryMicroservice.Handlers
         }
 
 
+        public override void Run()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
