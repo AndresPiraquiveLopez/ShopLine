@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using InventoryBusinessLogic.Models;
 using InventoryBusinessLogic.UnitOfWork;
 using Newtonsoft.Json;
@@ -8,46 +9,62 @@ namespace InventoryMicroservice.Handlers
 {
     public class InventoryHandler : HandlerBase
     {
-        private readonly IInventoryUoW _uoW;
+        private readonly IInventoryUoW _inventoryUoW;
+
+        private readonly IProductInventoryUoW _productInventoryUoW;
 
         public InventoryHandler(IUnityContainer container) : base(container)
         {
-            _uoW = container.Resolve<IInventoryUoW>();
+            _inventoryUoW = container.Resolve<IInventoryUoW>();
+
+            _productInventoryUoW = container.Resolve<IProductInventoryUoW>();
         }
 
-        
 
-        public int Add(string json)
+        public int AddToStock(string json)
         {
-            var products = JsonConvert.DeserializeObject<ProductInventory>(json);
+            var stock = JsonConvert.DeserializeObject<StockModel>(json);
 
-            return _uoW.AddToStockQty(products);
+            return _inventoryUoW.AddToStock(stock);
         }
+
+        public void AdjStock(string json)
+        {
+            var stock = JsonConvert.DeserializeObject<StockModel>(json);
+
+            _inventoryUoW.AdjStock(stock);
+        }
+
+        public void TransfertQtyStock(string json)
+        {
+            var transfertStock = JsonConvert.DeserializeObject<TransfertStockModel>(json);
+
+            _inventoryUoW.TransfertQtyStock(transfertStock);
+        }
+
+        public void RemoveFromStock(string json)
+        {
+            var stockModel = JsonConvert.DeserializeObject<StockModel>(json);
+
+            _inventoryUoW.RemoveFromStock(stockModel.Name);
+        }
+
+        public void AddProduct(string json)
+        {
+            var product = JsonConvert.DeserializeObject<ProductModel>(json);
+
+            _productInventoryUoW.AddProduct(product);
+        }
+
 
         public override void Run()
         {
             throw new NotImplementedException();
         }
 
-        public void AdjStock(string json)
+        public List<ProductModel> GetProduct(string productId)
         {
-            var product = JsonConvert.DeserializeObject<ProductInventory>(json);
-
-            _uoW.AdjStock(product.Qty, product.Id);
-        }
-
-        public void TransfertQty(string json)
-        {
-            var product = JsonConvert.DeserializeObject<ProductInventory>(json);
-
-            _uoW.TransfertQty(product.Qty, product.Id);
-        }
-
-        public void Delete(string json)
-        {
-            var product = JsonConvert.DeserializeObject<ProductInventory>(json);
-
-            _uoW.Delete(product.Id);
+            return _productInventoryUoW.GetProduct(productId);
         }
     }
 }

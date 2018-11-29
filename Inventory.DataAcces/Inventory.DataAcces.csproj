@@ -48,9 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Location.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\InventoryDb.cs" />
     <Compile Include="Entities\ProductCategory.cs" />
+    <Compile Include="Entities\ProductInventory.cs" />
+    <Compile Include="Entities\Stock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

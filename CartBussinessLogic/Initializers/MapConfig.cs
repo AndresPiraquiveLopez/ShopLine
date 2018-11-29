@@ -1,6 +1,6 @@
 ﻿using System;
 using AutoMapper;
-using CartBusinessLogic.Mapping;
+using CartBussinessLogic.Mapping;
 
 namespace CartBusinessLogic.Initializers
 {

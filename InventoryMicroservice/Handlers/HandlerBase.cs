@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InventoryBusinessLogic.Initializers;
 using Unity;
 
 namespace InventoryMicroservice.Handlers
@@ -13,7 +9,7 @@ namespace InventoryMicroservice.Handlers
 
         protected HandlerBase(IUnityContainer container)
         {
-            Container = container;
+            Container = container;          
         }
 
         public abstract void Run();
