@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace Cart.DataAcces.Entities
+namespace CartDataAcces.Entities
 {
     public class CartDb : DbContext
     {
@@ -8,12 +8,12 @@ namespace Cart.DataAcces.Entities
         {
         }
 
+        public virtual DbSet<Cart> Carts { get; set; }
+
+        public virtual DbSet<CartItem> CartItems { get; set; }
+
         public virtual DbSet<Product> Products { get; set; }
 
         public virtual DbSet<Category> Categories { get; set; }
-
-        public virtual DbSet<CartItem> ShoppingCartItems { get; set; }
-
     }
-
 }
