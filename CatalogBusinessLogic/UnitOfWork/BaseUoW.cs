@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CatalogBusinessLogic.Factories;
 using CatalogBusinessLogic.Repositories;
 
-namespace InventoryBusinessLogic.UnitOfWork
+namespace CatalogBusinessLogic.UnitOfWork
 {
     public class BaseUoW : IDisposable
     {

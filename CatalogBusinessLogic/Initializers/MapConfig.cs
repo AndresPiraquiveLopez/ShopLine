@@ -10,7 +10,7 @@ namespace CatalogBusinessLogic.Initializers
             Mapper.Reset();
             Mapper.Initialize(configuration =>
                 {
-                    configuration.AddProfiles(typeof(InventoryProfile).Assembly);
+                    configuration.AddProfiles(typeof(CatalogProfile).Assembly);
                 }
             );
         }

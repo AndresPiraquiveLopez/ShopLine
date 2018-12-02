@@ -6,17 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Catalog.DataAcces.Entities
 {
-    [Table("Product")]
-    public class Product
+    [Table("Category")]
+    public class Category
     {
         [Key]
         public int Id { get; set; }
 
-        public string ProductName { get; set; }
+        public string CategoryName { get; set; }
 
         //[ForeignKey("CategoryId")]
-        public int CategoryId { get; set; }
+        public int CatalogId { get; set; }
     }
 }

@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 
 namespace Catalog.DataAcces.Entities
 {
-    [Table("Product")]
-    public class Product
+    [Table("Catalog")]
+    public class Catalog
     {
         [Key]
         public int Id { get; set; }
 
-        public string ProductName { get; set; }
-
-        //[ForeignKey("CategoryId")]
-        public int CategoryId { get; set; }
+        public string CatalogName { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Unity;
 
-namespace InventoryMicroservice.Handlers
+namespace CatalogMicroservice.Handlers
 {
     public abstract class HandlerBase
     {

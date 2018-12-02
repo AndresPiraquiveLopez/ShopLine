@@ -1,108 +1,67 @@
 ﻿using System.Collections.Generic;
+using AutoMapper;
+using Catalog.DataAcces.Entities;
 using CatalogBusinessLogic.Factories;
-using InventoryBusinessLogic.UnitOfWork;
+using CatalogBusinessLogic.Models;
+using CatalogBusinessLogic.Repositories;
 
 namespace CatalogBusinessLogic.UnitOfWork
 {
     public class CatalogUoW : BaseUoW, ICatalogUoW
     {
-        //public IRepository<Product> ProductRepository => GetRepository<Product>();
+        public IRepository<Product> ProductRepository => GetRepository<Product>();
 
         public CatalogUoW(IRepositoryProvider repositoryProvider) : base(repositoryProvider)
         {
         }
 
-
-        public void TransfertQty(int qty, int id)
+        public IList<CategoryModel> Catalog(int id)
         {
-            throw new System.NotImplementedException();
+           return new List<CategoryModel>() {
+               new CategoryModel
+               {
+                   CatalogId = 1,
+                   CategoryName ="Ordinateur & tablette",
+                   Id = 1                   
+               }
+           };
         }
 
-    //    public int AddToStockQty(ProductInventory productInventory)
-    //    {
-    //        //var product = Mapper.Map<Product>(productInventory);
-    //        var product = new Product
-    //        {
-    //            Id = productInventory.Id,
-    //            Code = productInventory.Code,
-    //            CategoryId = productInventory.CategoryId,
-    //            Name = productInventory.Name,
-    //            Cost = productInventory.Cost,
-    //            SellPrice = productInventory.SellPrice,
-    //            Qty = productInventory.Qty
-    //        };
+        public int AddProduct(ProductModel newProduct)
+        {
+            var product = Mapper.Map<Product>(newProduct);
 
-    //        ProductRepository.Add(product);
+            ProductRepository.Add(product);
 
-    //        Commit();
+            Commit();
 
-    //        return product.Id;
-    //    }
+            return product.Id;
+        }
 
-    //    public void Delete(int id)
-    //    {
-    //        var product = ProductRepository.GetAll().FirstOrDefault(p => p.Id == id);
 
-    //        ProductRepository.Remove(product);
-    //        Commit();
-    //    }
+        //get product list
+        public IList<ProductModel> Category(int id)
+        {
+            return new List<ProductModel>() {
+               new ProductModel
+               {
+                   CategoryId = 1,
+                   Id = 1, ProductName ="HP ProBook x360 11 G1 laptop"
+               }
+           };
+        }
 
-    //    public void AdjStock(int qty, int id)
-    //    {           
-    //        var product = ProductRepository.GetAll().FirstOrDefault(i => i.Id == id);
 
-    //        if (product != null) product.Qty = qty;
-    //        Commit();
-
-    //    }
-
-    //    public IEnumerable<ProductInventory> GetAll()
-    //    {
-    //        var product = ProductRepository.GetAll().ToList();
-
-    //        return null;
-    //    }
-
-    //    public ProductInventory Reserve(int id)
-    //    {
-    //        throw new System.NotImplementedException();
-    //    }
-
-    //    public ProductInventory UnReserve(int id)
-    //    {
-    //        throw new System.NotImplementedException();
-    //    }
-
-    //    public void Receive(IEnumerable<ProductInventory> items)
-    //    {
-    //        throw new System.NotImplementedException();
-    //    }
-
-    //    public void Order(IEnumerable<ProductInventory> items)
-    //    {
-    //        throw new System.NotImplementedException();
-    //    }
-
-    //    public int CheckMinQty(int id)
-    //    {
-    //        throw new System.NotImplementedException();
-    //    }
-
-    //    public int AddToStockQty()
-    //    {
-    //        var product = new Product
-    //        {
-    //            Id = 3,
-    //            CategoryId = 1,
-    //            Code = "AAA",
-    //            Name = "Subaru",
-    //            SellPrice = 15,
-    //            Cost = 15
-    //        };
-    //        ProductRepository.Add(product);
-    //        Commit();
-            
-    //        return product.Id;
-    //    }
+        //get product details
+        public IList<ProductModel> Product(int id)
+        {
+            return new List<ProductModel>() {
+               new ProductModel
+               {
+                   ProductName ="HP ProBook x360 11 G1 laptop, Dual-Core N3350 2.4GHz | 128GB SSD | 4GB RAM |W10",
+                   Id = 1
+               }
+           };
+        }
     }
 }

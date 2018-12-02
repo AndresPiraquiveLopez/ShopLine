@@ -1,28 +1,16 @@
 ﻿using System.Collections.Generic;
+using CatalogBusinessLogic.Models;
 
 namespace CatalogBusinessLogic.UnitOfWork
 {
     public interface ICatalogUoW
     {
-        //void TransfertQty(int qty, int id);
+        IList<CategoryModel> Catalog(int id);
 
-        //int AddToStockQty(ProductInventory products);
+        IList<ProductModel> Category(int id);
 
-        //void Delete(int id);
-        
-        //void AdjStock(int qty, int id);
+        IList<ProductModel> Product(int id);
 
-        //IEnumerable<ProductInventory> GetAll();
-
-        //ProductInventory Reserve(int id);
-
-        //ProductInventory UnReserve(int id);
-
-        //void Receive(IEnumerable<ProductInventory> items);
-
-        //void Order(IEnumerable<ProductInventory> items);
-
-        //int CheckMinQty(int id);
-        
+        int AddProduct(ProductModel newProduct);
     }
 }

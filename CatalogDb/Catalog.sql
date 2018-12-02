@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Catalog]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY (1,1),
+	[CatalogName] VARBINARY(50) NULL
+)

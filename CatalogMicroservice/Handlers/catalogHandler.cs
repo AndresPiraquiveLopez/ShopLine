@@ -1,11 +1,11 @@
 ﻿using System;
 using CatalogBusinessLogic.UnitOfWork;
-using InventoryBusinessLogic.Models;
-using InventoryBusinessLogic.UnitOfWork;
 using Newtonsoft.Json;
 using Unity;
+using CatalogBusinessLogic.Models;
+using System.Collections.Generic;
 
-namespace InventoryMicroservice.Handlers
+namespace CatalogMicroservice.Handlers
 {
     public class CatalogHandler : HandlerBase
     {
@@ -16,40 +16,36 @@ namespace InventoryMicroservice.Handlers
             _uoW = container.Resolve<ICatalogUoW>();
         }
 
-        
+        public int AddProduct(string json)
+        {
+            var products = JsonConvert.DeserializeObject<ProductModel>(json);
 
-        //public int Add(string json)
-        //{
-        //    var products = JsonConvert.DeserializeObject<ProductInventory>(json);
+            return _uoW.AddProduct(products);
+        }
 
-        //    return _uoW.AddToStockQty(products);
-        //}
+        public IList<CategoryModel> Catalog(string json)
+        {
+            var catalogId = JsonConvert.DeserializeObject<CatalogModel>(json);
 
-        //public override void Run()
-        //{
-        //    throw new NotImplementedException();
-        //}
+            return _uoW.Catalog(catalogId.Id);
+        }
 
-        //public void AdjStock(string json)
-        //{
-        //    var product = JsonConvert.DeserializeObject<ProductInventory>(json);
+        //get product list
+        public IList<ProductModel> Category(string json)
+        {
+            var categoryId = JsonConvert.DeserializeObject<CategoryModel>(json);
 
-        //    _uoW.AdjStock(product.Qty, product.Id);
-        //}
+            return _uoW.Category(categoryId.Id);
+        }
 
-        //public void TransfertQty(string json)
-        //{
-        //    var product = JsonConvert.DeserializeObject<ProductInventory>(json);
+        //get product details
+        public IList<ProductModel> products(string json)
+        {
+            var productId = JsonConvert.DeserializeObject<ProductModel>(json);
 
-        //    _uoW.TransfertQty(product.Qty, product.Id);
-        //}
+            return _uoW.Category(productId.Id);
+        }
 
-        //public void Delete(string json)
-        //{
-        //    var product = JsonConvert.DeserializeObject<ProductInventory>(json);
-
-        //    _uoW.Delete(product.Id);
-        //}
         public override void Run()
         {
             throw new NotImplementedException();

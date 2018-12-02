@@ -48,10 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Entities\Catalog.cs" />
     <Compile Include="Entities\CatalogDb.cs" />
+    <Compile Include="Entities\ICatalog.cs" />
     <Compile Include="Entities\Product.cs" />
-    <Compile Include="Entities\ProductCategory.cs" />
+    <Compile Include="Entities\Category.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
