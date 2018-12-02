@@ -16,13 +16,20 @@ namespace InventoryBusinessLogic.UnitOfWork
     {
         public IRepository<Product> ProductRepository => GetRepository<Product>();
 
+        public IRepository<ProductInventory> ProductInventoryRepository => GetRepository<ProductInventory>();
+
         public ProductInventoryUoW(IRepositoryProvider repositoryProvider) : base(repositoryProvider)
         {
         }
         
-        public IEnumerable<ProductInventoryModel> GetAll()
+        public IEnumerable<ProductInventoryModel> GetAllInventory()
         {
-            throw new NotImplementedException();
+            var productInventory = ProductInventoryRepository.GetAll().Include("Location").ToList();
+
+            var model = Mapper.Map<IEnumerable<ProductInventoryModel>>(productInventory);
+
+
+            return model;
         }
 
         public void AddProduct(ProductModel productModel)
@@ -65,9 +72,19 @@ namespace InventoryBusinessLogic.UnitOfWork
             throw new NotImplementedException();
         }
 
-        public List<ProductModel> GetProduct(string productId)
+        public ProductModel GetProduct(string productName, string code)
         {
-            throw new NotImplementedException();
+            var product = ProductRepository.GetAll().FirstOrDefault(p => p.Name == productName && p.Code == code);
+
+            return Mapper.Map<ProductModel>(product);
+        }
+
+        public void RemoveFrom(int id)
+        {
+            var product = ProductRepository.GetAll().FirstOrDefault(p => p.ProductId == id);
+
+            ProductRepository.Remove(product);
+            Commit();
         }
     }
 }

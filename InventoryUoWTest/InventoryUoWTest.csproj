@@ -83,6 +83,7 @@
   <ItemGroup>
     <Compile Include="InventoryUoWTest.cs" />
     <Compile Include="Mocking\MockRepositoryProvider.cs" />
+    <Compile Include="ProductInventoryUoWTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

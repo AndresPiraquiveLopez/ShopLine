@@ -10,6 +10,8 @@
 
         public int ProductCategoryId { get; set; }
 
+        public ProductCategoryModel ProductCategory { get; set; }
+
         public decimal Cost { get; set; }
 
         public decimal SellPrice { get; set; }

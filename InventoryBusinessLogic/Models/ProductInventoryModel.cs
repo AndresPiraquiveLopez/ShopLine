@@ -6,7 +6,8 @@
 
         public int ProductId { get; set; }
 
-        public int Location { get; set; }
+
+        public  LocationModel Location { get; set; }
 
         public int Qty { get; set; }        
 

@@ -111,6 +111,7 @@
     <Compile Include="Initializers\MapConfig.cs" />
     <Compile Include="Initializers\UnityConfig.cs" />
     <Compile Include="Mapping\InventoryProfile.cs" />
+    <Compile Include="Models\LocationModel.cs" />
     <Compile Include="Models\ProductCategoryModel.cs" />
     <Compile Include="Models\ProductInventoryModel.cs" />
     <Compile Include="Models\ProductModel.cs" />

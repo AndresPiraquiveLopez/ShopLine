@@ -62,9 +62,17 @@ namespace InventoryMicroservice.Handlers
             throw new NotImplementedException();
         }
 
-        public List<ProductModel> GetProduct(string productId)
+        public ProductModel GetProduct(string json)
         {
-            return _productInventoryUoW.GetProduct(productId);
+            var product = JsonConvert.DeserializeObject<ProductModel>(json);
+
+            return _productInventoryUoW.GetProduct(product.Name,product.Code);
+        }
+
+        public IEnumerable<ProductInventoryModel> GetAllInventory()
+        {            
+
+            return _productInventoryUoW.GetAllInventory();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CartBusinessLogic.Models;
 using CartBusinessLogic.UnitOfWork;
 using Newtonsoft.Json;
@@ -23,17 +24,25 @@ namespace CartMicroservice.Handlers
             return _uoW.AddItem(cartItems);
         }
 
-        //public void AddItem(string json)
-        //{
-        //    var products = JsonConvert.DeserializeObject<ProductModel>(json);
+        public List<CartItemModel> GetCartItems()
+        {
+            //var cartItems = JsonConvert.DeserializeObject<CartItemModel>();
 
-        //    _uoW.AddItem(products);
-        //}
+            return _uoW.GetCartItems();
+        }
 
         public override void Run()
         {
             throw new NotImplementedException();
         }
+
+        public int UpdateQtyItem(string json)
+        {
+            var item = JsonConvert.DeserializeObject<CartItemModel>(json);
+            return _uoW.UpdateQtyItem(item.ProductId, item.Quantity);
+        }
+
+
 
         //public override void Run()
         //{
