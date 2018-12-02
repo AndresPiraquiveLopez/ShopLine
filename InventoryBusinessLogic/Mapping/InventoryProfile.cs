@@ -8,7 +8,10 @@ namespace InventoryBusinessLogic.Mapping
     {
         public InventoryProfile()
         {
-            CreateMap<ProductInventory, Product>();
+            CreateMap<ProductInventoryModel, Product>();
+            CreateMap<StockModel, Stock>();
+            CreateMap<Stock, StockModel>();
+            CreateMap<ProductModel, Product>();
         }
     }
 }

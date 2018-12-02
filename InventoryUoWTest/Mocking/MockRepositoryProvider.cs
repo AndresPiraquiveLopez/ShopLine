@@ -41,7 +41,7 @@ namespace InventoryUoWTest.Mocking
             _fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                 .ForEach(b => _fixture.Behaviors.Remove(b));
             _fixture.Behaviors.Add(new OmitOnRecursionBehavior(2));
-            _fixture.RepeatCount = 12;
+            _fixture.RepeatCount = 3;
         }
 
         public IRepository<T> CreateRepository<T>() where T : class
@@ -71,10 +71,9 @@ namespace InventoryUoWTest.Mocking
             //make general setup for repository
             var list = _fixture.CreateMany<T>().ToList();
             mock.Setup(r => r.GetAll()).Returns(list.AsQueryable());
-            mock.Setup(r => r.GetAll(It.IsAny<string>())).Returns(list.AsQueryable());
-
-            mock.Setup(r => r.Add(It.IsAny<T>())).Callback<T>(t => list.Add(t));
-            mock.Setup(r => r.Remove(It.IsAny<T>())).Callback<T>(t => list.Remove(t));
+            mock.Setup(r => r.GetAll(It.IsAny<string[]>())).Returns(list.AsQueryable());
+            mock.Setup(r => r.Add(It.IsAny<T>())).Callback<T>(t => list.Add(t)).Returns<T>(t => t);           
+            mock.Setup(r => r.Remove(It.IsAny<T>())).Callback<T>(t => list.Remove(t)).Returns<T>(t => t);
 
             //crete mock object
             var repositoryMock = mock.Object;

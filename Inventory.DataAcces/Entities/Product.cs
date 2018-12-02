@@ -12,18 +12,19 @@ namespace Inventory.DataAcces.Entities
     public class Product
     {
         [Key]
-        public int Id { get; set; }
+        public int ProductId { get; set; }
 
         public string Code { get; set; }
 
         public string Name { get; set; }
 
-        public int CategoryId { get; set; }
+        public int ProductCategoryId { get; set; }
+
+        [ForeignKey("ProductCategoryId")]
+        public virtual ProductCategory ProductCategory { get; set; }
 
         public decimal Cost { get; set; }
 
-        public decimal SellPrice { get; set; }
-
-        public int Qty { get; set; }
+        public decimal SellPrice { get; set; }        
     }
 }

@@ -12,7 +12,7 @@ namespace Inventory.DataAcces.Entities
     public class ProductCategory
     {
         [Key]
-        public int Id { get; set; }
+        public int ProductCategoryId { get; set; }
 
         public string Category { get; set; }
     }

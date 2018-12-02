@@ -16,13 +16,19 @@ namespace CartMicroservice.Handlers
         }
 
 
-
-        public void AddItem(string json)
+        public int AddItem(string json)
         {
-            var products = JsonConvert.DeserializeObject<ProductModel>(json);
+            var cartItems = JsonConvert.DeserializeObject<CartItemModel>(json);
 
-            _uoW.AddItem(products);
+            return _uoW.AddItem(cartItems);
         }
+
+        //public void AddItem(string json)
+        //{
+        //    var products = JsonConvert.DeserializeObject<ProductModel>(json);
+
+        //    _uoW.AddItem(products);
+        //}
 
         public override void Run()
         {

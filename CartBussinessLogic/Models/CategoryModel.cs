@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace CartBusinessLogic.Models
+﻿namespace CartBusinessLogic.Models
 {
     public class CategoryModel
     {

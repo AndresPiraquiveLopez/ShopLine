@@ -15,6 +15,7 @@ namespace InventoryBusinessLogic.Initializers
 
             Container.RegisterType<IRepositoryProvider, RepositoryProvider>();
             Container.RegisterType<IInventoryUoW, InventoryUoW>();
+            Container.RegisterType<IProductInventoryUoW, ProductInventoryUoW>();
         }
     }
 }

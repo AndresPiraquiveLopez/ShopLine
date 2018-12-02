@@ -4,7 +4,7 @@ using InventoryBusinessLogic.Mapping;
 
 namespace InventoryBusinessLogic.Initializers
 {
-    public class MapConfig
+    public static class MapConfig
     {
         public static void RegisterMapping()
         {
