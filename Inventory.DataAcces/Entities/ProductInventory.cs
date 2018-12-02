@@ -12,12 +12,12 @@ namespace Inventory.DataAcces.Entities
     public class ProductInventory
     {
         [Key]
-        public int ProductInventoryId { get; set; }
-
         public int ProductId { get; set; }
 
-        [ForeignKey("ProductId")]
-        public Product Product { get; set; }
+        //public int ProductId { get; set; }
+
+        //[ForeignKey("ProductId")]
+        //public Product Product { get; set; }
 
         public int LocationId { get; set; }
 

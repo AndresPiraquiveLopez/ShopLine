@@ -13,8 +13,6 @@ namespace InventoryBusinessLogic.UnitOfWork
 
         int AddToStock(StockModel stock);     
 
-        void RemoveFrom(int id);
-
         void RemoveFromStock(string name);
 
         void AdjStock(StockModel stock);      

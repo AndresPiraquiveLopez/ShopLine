@@ -22,58 +22,112 @@ namespace InventoryUoWTest
         [TestInitialize]
         public void TestMethod1()
         {
-            _fixture = new Fixture { RepeatCount = 1 };
+            _fixture = new Fixture { RepeatCount = 2 };
             _mock = new MockRepositoryProvider(_fixture);
             MapConfig.RegisterMapping();
-
-            // in most cases only one item is required for tests, do not force to have the 12
-            // as set in MockRepositoryProvider
-            _fixture.RepeatCount = 1;
 
             _sut = new InventoryUoW(_mock);
         }
 
         [TestMethod]
-        public void GetAddToStockQty_ForProduct()
+        public void AddToStock_New()
         {
-            //arange                       
-            //var stock = new StockModel
-            //{
-            //    StockId = 1,
-            //    ProductId = 1,
-            //    Name = "MTL",
-            //    Qty = 10
-            //};
-
+            //arange                                   
             var stock = _fixture.Create<StockModel>();
 
             _mock.CreateRepository<Stock>().GetAll().First();
 
             //act
-            var result = _sut.AddToStock(stock);
+            var productId = _sut.AddToStock(stock);
 
             //assert
-            Assert.IsTrue(result == 1);
+            Assert.AreEqual(productId, stock.ProductId);
         }
 
         [TestMethod]
-        public void RemoveFrom_FromStock()
-        {
-            //arange                       
-            //var stock = new StockModel
-            //{
-            //    StockId = 1,
-            //    ProductId = 1,
-            //    Qty = 10,
-            //    Name = "MTL"
-            //};
+        public void AddToStock_Qty_In_Exist_Stock()
+        {           
+            var stockModel = _fixture.Create<StockModel>();
+
+            var mockRepository = _mock.CreateRepository<Stock>().GetAll().First();
+            mockRepository.StockId = stockModel.StockId;
+            mockRepository.ProductId = stockModel.ProductId;
+
+            //act
+            var productId = _sut.AddToStock(stockModel);
+
+            //assert
+            Assert.AreEqual(productId, stockModel.ProductId);
+        }
+
+        [TestMethod]
+        public void RemoveFromStock()
+        {           
 
             var stock = _fixture.Create<StockModel>();
 
-            var stockMock = _mock.CreateRepository<Stock>().GetAll().First();
-            stockMock.Name = stock.Name;
+            var stockMock = _mock.CreateRepository<Stock>().GetAll();
+            stockMock.First().Name = stock.Name;
+
             //act
             _sut.RemoveFromStock(stock.Name);
+
+            //assert
+            Assert.IsTrue(_mock.CommitCallCount > 0);
+        }
+
+
+        [TestMethod]
+        public void TransfertQtyStock_NonCallCommit()
+        {          
+
+            var transfertStockModel = _fixture.Create<TransfertStockModel>();
+
+            var stockMock = _mock.CreateRepository<Stock>().GetAll();
+            stockMock.First().StockId = transfertStockModel.FromStockId;
+            stockMock.Last().StockId = transfertStockModel.ToStockId;
+
+            //act
+            _sut.TransfertQtyStock(transfertStockModel);
+
+            //assert
+            Assert.IsTrue(_mock.CommitCallCount == 0);
+        }
+
+        [TestMethod]
+        public void TransfertQtyStock_CallCommit()
+        {
+
+            var transfertStockModel = _fixture.Create<TransfertStockModel>();
+
+            var stockMock = _mock.CreateRepository<Stock>().GetAll();
+
+            stockMock.First().StockId = transfertStockModel.FromStockId;
+            stockMock.First().ProductId = transfertStockModel.ProductId;
+
+            stockMock.Last().StockId = transfertStockModel.ToStockId;
+            stockMock.Last().ProductId = transfertStockModel.ProductId;
+
+            //act
+            _sut.TransfertQtyStock(transfertStockModel);
+
+            //assert
+            Assert.IsTrue(_mock.CommitCallCount > 0);
+        }
+
+        [TestMethod]
+        public void AdjStock_CallCommit()
+        {
+
+            var stockModel = _fixture.Create<StockModel>();
+
+            var stockMock = _mock.CreateRepository<Stock>().GetAll();
+
+            stockMock.First().StockId = stockModel.StockId;
+            stockMock.First().ProductId = stockModel.ProductId;
+
+            //act
+            _sut.AdjStock(stockModel);
 
             //assert
             Assert.IsTrue(_mock.CommitCallCount > 0);

@@ -9,7 +9,7 @@ namespace InventoryBusinessLogic.UnitOfWork
 {
     public interface IProductInventoryUoW
     {
-        IEnumerable<ProductInventoryModel> GetAll();
+        IEnumerable<ProductInventoryModel> GetAllInventory();
 
         void AddProduct(ProductModel productModel);
 
@@ -22,6 +22,9 @@ namespace InventoryBusinessLogic.UnitOfWork
         void Order(IEnumerable<ProductInventoryModel> items);
 
         int CheckMinQty(int id);
-        List<ProductModel> GetProduct(string productId);
+
+        ProductModel GetProduct(string productName, string productCode);
+
+        void RemoveFrom(int id);
     }
 }
