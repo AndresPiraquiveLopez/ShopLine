@@ -27,18 +27,6 @@ namespace CatalogBusinessLogic.UnitOfWork
            };
         }
 
-        public int AddProduct(ProductModel newProduct)
-        {
-            var product = Mapper.Map<Product>(newProduct);
-
-            ProductRepository.Add(product);
-
-            Commit();
-
-            return product.Id;
-        }
-
-
         //get product list
         public IList<ProductModel> Category(int id)
         {
@@ -47,6 +35,11 @@ namespace CatalogBusinessLogic.UnitOfWork
                {
                    CategoryId = 1,
                    Id = 1, ProductName ="HP ProBook x360 11 G1 laptop"
+               },
+               new ProductModel
+               {
+                   CategoryId = 1,
+                   Id = 2, ProductName = "Lenovo Thinkpad T510"
                }
            };
         }
@@ -59,8 +52,11 @@ namespace CatalogBusinessLogic.UnitOfWork
                new ProductModel
                {
                    ProductName ="HP ProBook x360 11 G1 laptop, Dual-Core N3350 2.4GHz | 128GB SSD | 4GB RAM |W10",
-                   Id = 1
-               }
+                   Id = 1,
+                   ProductCode = "PROD0001",
+                   Cost = 1000,
+                   SellPrice = 900
+                }
            };
         }
     }

@@ -16,13 +16,6 @@ namespace CatalogMicroservice.Handlers
             _uoW = container.Resolve<ICatalogUoW>();
         }
 
-        public int AddProduct(string json)
-        {
-            var products = JsonConvert.DeserializeObject<ProductModel>(json);
-
-            return _uoW.AddProduct(products);
-        }
-
         public IList<CategoryModel> Catalog(string json)
         {
             var catalogId = JsonConvert.DeserializeObject<CatalogModel>(json);
@@ -43,7 +36,7 @@ namespace CatalogMicroservice.Handlers
         {
             var productId = JsonConvert.DeserializeObject<ProductModel>(json);
 
-            return _uoW.Category(productId.Id);
+            return _uoW.Product(productId.Id);
         }
 
         public override void Run()

@@ -10,7 +10,5 @@ namespace CatalogBusinessLogic.UnitOfWork
         IList<ProductModel> Category(int id);
 
         IList<ProductModel> Product(int id);
-
-        int AddProduct(ProductModel newProduct);
     }
 }
