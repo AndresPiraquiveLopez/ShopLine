@@ -17,6 +17,8 @@ namespace CartBusinessLogic.UnitOfWork
 
         public IRepository<CartItem> CartItemRepository => GetRepository<CartItem>();
 
+        //public IRepository<CartItem> CartAllItemRepository => GetRepository<CartItem>();
+
         public CartUoW(IRepositoryProvider repositoryProvider) : base(repositoryProvider)
         {
         }
@@ -25,7 +27,7 @@ namespace CartBusinessLogic.UnitOfWork
         {
             var userId = GetUserId();
             var cartId = GetCartId();
-            var itemId = newItem.ItemId;
+
 
             var item = Mapper.Map<CartItem>(newItem);
 
@@ -41,19 +43,33 @@ namespace CartBusinessLogic.UnitOfWork
             if (itemBd != null)
             {
                 itemBd.Quantity++;
+                Commit();
+                return itemBd.ItemId;
             }
-            else
-            {
-                item.CartId = cartId;
-                item.Quantity = 1;
-                item.DateCreated = DateTime.Now;
 
-                CartItemRepository.Add(item);
-            }
+            item.CartId = cartId;
+            item.Quantity = 1;
+            item.DateCreated = DateTime.Now;
+
+            CartItemRepository.Add(item);
 
             Commit();
 
             return item.ItemId;
+        }
+
+
+        List<CartItemModel> ICartUoW.GetCartItems()
+        {
+            var cartId = GetCartId();
+
+            var cartItemsBd = CartItemRepository.GetAll().Where(i => i.CartId == cartId).ToList();
+
+            var cartItemsModel = Mapper.Map<List<CartItemModel>>(cartItemsBd);
+
+            return cartItemsModel;
+
+
         }
 
         public decimal GetTotal()
@@ -66,9 +82,24 @@ namespace CartBusinessLogic.UnitOfWork
             throw new System.NotImplementedException();
         }
 
-        public void UpdateQtyItem(string cartId, int productId, int qty)
+        public int UpdateQtyItem(int productId, int qty)
         {
-            throw new System.NotImplementedException();
+            var cartId = GetCartId();
+
+            var itemBd = CartItemRepository
+                            .GetAll()
+                            .FirstOrDefault(i => i.CartId == cartId && i.ProductId == productId);
+
+            if (itemBd != null)
+            {
+                itemBd.Quantity = qty;
+
+                Commit();
+
+                return itemBd.ItemId;
+            }
+
+            return -1;
         }
 
         public int GetNbrItems()
@@ -81,10 +112,6 @@ namespace CartBusinessLogic.UnitOfWork
             throw new System.NotImplementedException();
         }
 
-        List<CartItemModel> ICartUoW.GetCartItems()
-        {
-            throw new System.NotImplementedException();
-        }
 
         public string AddCart(CartModel newCart)
         {
@@ -97,10 +124,6 @@ namespace CartBusinessLogic.UnitOfWork
             return cart.CartId;
         }
 
-        public void AddItem(ProductModel newProduct)
-        {
-            throw new NotImplementedException();
-        }
 
         private bool IsNewCart(string cartId)
         {
@@ -136,10 +159,10 @@ namespace CartBusinessLogic.UnitOfWork
                 // Session.Add("CartId", cartId.ToString());
                 Session.Add("CartId", "68fad8e0-7818-41d9-8dde-71139fcdbe87");
             }
-            return Session["UserId"];
+            return Session["CartId"];
         }
-    
-      
+
+
         private string GetUserId()
         {
             if (!Session.ContainsKey("UserId"))

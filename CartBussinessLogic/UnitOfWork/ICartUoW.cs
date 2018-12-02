@@ -9,21 +9,21 @@ namespace CartBusinessLogic.UnitOfWork
 
         int AddItem(CartItemModel newItem);
 
-
-
         List<CartItemModel> GetCartItems();
+
+        int UpdateQtyItem(int productId, int qty);
+
+        // ToDo
 
         void RemoveItem(int itemId);
 
-        void UpdateQtyItem(string cartId, int productId, int qty);
-    
-
-        decimal GetTotal();
         int GetNbrItems();
+        decimal GetTotal();
+        
         void EmptyCart();
 
 
-        void AddItem(ProductModel newProduct);
+       
 
 
 
