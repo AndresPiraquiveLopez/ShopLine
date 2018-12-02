@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AutoFixture;
-using Cart.DataAcces.Entities;
+using CartDataAcces.Entities;
 using CartBusinessLogic.Initializers;
 using CartBusinessLogic.Models;
 using CartBusinessLogic.UnitOfWork;

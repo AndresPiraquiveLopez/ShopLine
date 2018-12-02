@@ -39,7 +39,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cart.DataAcces", "Cart.Data
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CartDb", "CartDb\CartDb.sqlproj", "{E58F21CF-A076-44D2-8A57-CB20B0BFB077}"
 EndProject
+<<<<<<< HEAD
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartMicroservice", "CartMicroservice1\CartMicroservice.csproj", "{A23BB4B6-586B-4187-9F5F-C20F57AE18D6}"
+=======
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CartMicroservice1", "CartMicroservice1\CartMicroservice1.csproj", "{A23BB4B6-586B-4187-9F5F-C20F57AE18D6}"
+>>>>>>> 2840f64acf9f75b0474365064679caa194561d97
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartUoWTest", "CartUoWTest\CartUoWTest.csproj", "{3E8B7C6C-885E-4004-A885-50FCC607FCE6}"
 EndProject

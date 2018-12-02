@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace CartBusinessLogic.Models
+﻿namespace CartBusinessLogic.Models
 {
     public class ProductModel
     {
@@ -8,13 +6,13 @@ namespace CartBusinessLogic.Models
 
         public string ProductName { get; set; }
 
-        public string Description { get; set; }
+        //public string Description { get; set; }
 
         public string ImagePath { get; set; }
 
         public double? UnitPrice { get; set; }
 
-        //public CategoryModel Category { get; set; }
+        public CategoryModel Category { get; set; }
 
         public int CategoryId { get; set; }
 

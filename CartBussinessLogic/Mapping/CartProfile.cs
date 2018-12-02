@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Cart.DataAcces.Entities;
+using CartDataAcces.Entities;
 using CartBusinessLogic.Models;
 
-namespace CartBussinessLogic.Mapping
+namespace CartBusinessLogic.Mapping
 {
     public class CartProfile : Profile
     {

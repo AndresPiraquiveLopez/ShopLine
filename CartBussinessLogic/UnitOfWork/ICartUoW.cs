@@ -5,13 +5,37 @@ namespace CartBusinessLogic.UnitOfWork
 {
     public interface ICartUoW
     {
-        void AddItem(ProductModel newProduct);
-        int GetCartId();
+        string AddCart(CartModel newCart);
+
+        int AddItem(CartItemModel newItem);
+
+
+
         List<CartItemModel> GetCartItems();
-        decimal GetTotal();
-        void RemoveItem(string cartId, int productId);
+
+        void RemoveItem(int itemId);
+
         void UpdateQtyItem(string cartId, int productId, int qty);
+    
+
+        decimal GetTotal();
         int GetNbrItems();
         void EmptyCart();
+
+
+        void AddItem(ProductModel newProduct);
+
+
+
+
+
+
+
+
+
+
+
+
+        
     }
 }

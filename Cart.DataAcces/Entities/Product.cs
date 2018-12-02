@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Cart.DataAcces.Entities
+namespace CartDataAcces.Entities
 {
-    [Table("Product")]
+    [Table("Products")]
     public class Product
     {
         [Key]
@@ -17,10 +17,9 @@ namespace Cart.DataAcces.Entities
 
         public double? UnitPrice { get; set; }
 
-        //[ForeignKey("CategoryId")]
         public int CategoryId { get; set; }
-
-        //public virtual Category Category { get; set; }
+        [ForeignKey("CategoryId")]
+        public virtual Category Category { get; set; }
 
     }
 }

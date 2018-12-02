@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
-using Cart.DataAcces.Entities;
+using CartDataAcces.Entities;
 using CartBusinessLogic.Repositories;
 
 namespace CartBusinessLogic.Factories

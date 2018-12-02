@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Cart.DataAcces.Entities
+namespace CartDataAcces.Entities
 {
-    [Table("Category")]
+    [Table("Categories")]
     public class Category
     {
         [Key]
