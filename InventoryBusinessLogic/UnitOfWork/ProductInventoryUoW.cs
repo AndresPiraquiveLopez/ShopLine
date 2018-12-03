@@ -74,7 +74,7 @@ namespace InventoryBusinessLogic.UnitOfWork
 
         public ProductModel GetProduct(string productName, string code)
         {
-            var product = ProductRepository.GetAll().FirstOrDefault(p => p.Name == productName && p.Code == code);
+            var product = ProductRepository.GetAll("ProductCategory").FirstOrDefault(p => p.Name == productName && p.Code == code);
 
             return Mapper.Map<ProductModel>(product);
         }

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Linq;
-using AutoFixture;
-using CartDataAcces.Entities;
+﻿using AutoFixture;
 using CartBusinessLogic.Initializers;
-using CartBusinessLogic.Models;
 using CartBusinessLogic.UnitOfWork;
 using CartUoWTest.Mocking;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -32,32 +28,6 @@ namespace CartUoWTest
             _fixture.RepeatCount = 1;
 
             _sut = new CartUoW(_mock);
-        }
-
-        [TestMethod]
-        public void AddItemTo_Cart()
-        {
-            ////arange                       
-            //var product = new ProductModel
-            //{
-            //    ProductId = 1,
-            //    CategoryId = 1,
-            //    ProductName = "Macbook Pro 2018",
-            //    Description = "Test",
-            //    ImagePath = "http://images-server/Macbook-pro-2018",
-            //    UnitPrice = 1999.99
-            //};
-
-            //var mock = _mock.CreateRepository<Product>().GetAll().First();
-           
-            var product = _fixture.Create<ProductModel>();
-            //mock.ProductId = product.ProductId;
-           //act
-           _sut.AddItem(product);
-
-            //assert
-            //Assert.AreEqual(mock.UnitPrice, product.UnitPrice);
-            Assert.IsTrue(_mock.CommitCallCount > 0);
         }
     }
 }
