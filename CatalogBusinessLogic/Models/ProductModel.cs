@@ -9,5 +9,11 @@
         //public Foreign Key
         public int CategoryId { get; set; }
 
+        public string ProductCode { get; set; }
+
+        public decimal Cost { get; set; }
+
+        public decimal SellPrice { get; set; }
+
     }
 }
