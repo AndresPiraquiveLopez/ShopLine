@@ -130,6 +130,37 @@ namespace CartMicroservice1
         }
 
 
+        [FunctionName("GetTotal")]
+        public static async Task<HttpResponseMessage> GetTotal([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequestMessage req, TraceWriter log)
+        {
+            log.Info("C# HTTP trigger function processed a request.");
+
+            // parse query parameter
+            string name = req.GetQueryNameValuePairs()
+                .FirstOrDefault(q => string.Compare(q.Key, "name", true) == 0)
+                .Value;
+            object data = null;
+
+            if (name == null)
+            {
+                // Get request body
+                data = await req.Content.ReadAsAsync<object>();
+            }
+
+            UnityConfig.RegisterComponents();
+            MapConfig.RegisterMapping();
+
+
+
+
+            var cartItems = new CartHandler(UnityConfig.Container).GetTotal();
+            if (cartItems >= 0)
+                return req.CreateResponse(HttpStatusCode.OK, cartItems);
+            else
+                return req.CreateResponse(HttpStatusCode.Forbidden, "Forbidden");
+        }
+
+
         [FunctionName("UpdateQtyItem")]
         public static async Task<HttpResponseMessage> UpdateQtyItem([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequestMessage req, TraceWriter log)
         {

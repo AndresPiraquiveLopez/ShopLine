@@ -15,7 +15,7 @@ namespace Cart.DataAcces.Entities
 
         public string ImagePath { get; set; }
 
-        public double? UnitPrice { get; set; }
+        public decimal? UnitPrice { get; set; }
 
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]

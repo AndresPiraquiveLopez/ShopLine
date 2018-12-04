@@ -13,11 +13,10 @@ namespace CartBusinessLogic.UnitOfWork
 
         int UpdateQtyItem(int productId, int qty);
 
-        // ToDo today
-
         int RemoveItem(CartItemModel item);
 
         int GetNbrItems();
+
         decimal GetTotal();
         
         void EmptyCart();

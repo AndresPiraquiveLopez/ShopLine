@@ -55,6 +55,11 @@ namespace CartMicroservice.Handlers
             return _uoW.GetNbrItems();
         }
 
+        public decimal GetTotal()
+        {
+            return _uoW.GetTotal();
+        }
+        
 
         //public override void Run()
         //{

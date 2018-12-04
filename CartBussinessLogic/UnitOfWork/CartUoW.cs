@@ -18,7 +18,7 @@ namespace CartBussinessLogic.UnitOfWork
 
         public IRepository<CartItem> CartItemRepository => GetRepository<CartItem>();
 
-        //public IRepository<CartItem> CartAllItemRepository => GetRepository<CartItem>();
+        public IRepository<Product> ProductRepository => GetRepository<Product>();
 
         public CartUoW(IRepositoryProvider repositoryProvider) : base(repositoryProvider)
         {
@@ -75,7 +75,19 @@ namespace CartBussinessLogic.UnitOfWork
 
         public decimal GetTotal()
         {
-            throw new System.NotImplementedException();
+            var cartId = GetCartId();
+
+            decimal total = 0;
+
+            var cartItemsBd = CartItemRepository.GetAll().Where(i => i.CartId == cartId).ToList();
+
+            foreach (CartItem item in cartItemsBd)
+            {
+                Product product = ProductRepository.GetAll().FirstOrDefault(p => p.ProductId == item.ProductId);
+                total += (decimal)item.Quantity * (decimal)product.UnitPrice;
+            }
+          
+            return total;
         }
 
         public int RemoveItem(CartItemModel item)
@@ -198,5 +210,6 @@ namespace CartBussinessLogic.UnitOfWork
         {
             throw new NotImplementedException();
         }
+
     }
 }
