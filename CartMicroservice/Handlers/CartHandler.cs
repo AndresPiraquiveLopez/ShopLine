@@ -43,11 +43,23 @@ namespace CartMicroservice.Handlers
             return _uoW.UpdateQtyItem(item.ProductId, item.Quantity);
         }
 
+        public int RemoveItem(string json)
+        {
+            var cartItems = JsonConvert.DeserializeObject<CartItemModel>(json);
+
+            return _uoW.RemoveItem(cartItems);
+        }
+
+        public int GetNbrItems()
+        {
+            return _uoW.GetNbrItems();
+        }
 
 
         //public override void Run()
         //{
-        //    throw new NotImplementedException();
+
+        //    throw new NotImplementedException(); 
         //}
 
         //public void AdjStock(string json)

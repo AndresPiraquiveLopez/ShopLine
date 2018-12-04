@@ -78,9 +78,25 @@ namespace CartBussinessLogic.UnitOfWork
             throw new System.NotImplementedException();
         }
 
-        public void RemoveItem(string cartId, int productId)
+        public int RemoveItem(CartItemModel item)
         {
-            throw new System.NotImplementedException();
+            var cartId = GetCartId();
+
+            var itemBd =
+                CartItemRepository.GetAll().FirstOrDefault(
+                    i => i.CartId == cartId && i.ProductId == item.ProductId
+                );
+
+            if (itemBd != null)
+            {
+                var id = itemBd.ItemId;
+                CartItemRepository.Remove(itemBd);
+                Commit();
+                return id;
+            }
+
+            return -1;
+
         }
 
         public int UpdateQtyItem(int productId, int qty)
@@ -105,7 +121,9 @@ namespace CartBussinessLogic.UnitOfWork
 
         public int GetNbrItems()
         {
-            throw new System.NotImplementedException();
+            var cartId = GetCartId();
+
+            return CartItemRepository.GetAll().Count(i => i.CartId == cartId);
         }
 
         public void EmptyCart()

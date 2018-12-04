@@ -15,7 +15,7 @@ namespace CartBusinessLogic.UnitOfWork
 
         // ToDo today
 
-        void RemoveItem(int itemId);
+        int RemoveItem(CartItemModel item);
 
         int GetNbrItems();
         decimal GetTotal();
