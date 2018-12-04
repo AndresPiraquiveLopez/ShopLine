@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CartDataAcces.Entities
+namespace Cart.DataAcces.Entities
 {
     [Table("Carts")]
     public class Cart

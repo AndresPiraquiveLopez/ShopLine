@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CartDataAcces.Entities
+namespace Cart.DataAcces.Entities
 {
     [Table("CartItems")]
     public class CartItem
@@ -15,7 +15,7 @@ namespace CartDataAcces.Entities
 
         public string CartId { get; set; }
         [ForeignKey("CartId")]
-        public virtual Cart Cart { get; set; }
+        public virtual global::Cart.DataAcces.Entities.Cart Cart { get; set; }
 
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]

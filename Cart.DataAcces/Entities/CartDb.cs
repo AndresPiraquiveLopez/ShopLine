@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace CartDataAcces.Entities
+namespace Cart.DataAcces.Entities
 {
     public class CartDb : DbContext
     {

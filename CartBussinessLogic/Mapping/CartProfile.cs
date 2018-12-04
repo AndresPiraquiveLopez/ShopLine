@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using CartDataAcces.Entities;
 using CartBusinessLogic.Models;
 using System.Collections.Generic;
+using Cart.DataAcces.Entities;
 
 namespace CartBusinessLogic.Mapping
 {

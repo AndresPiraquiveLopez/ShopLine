@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
-using CartDataAcces.Entities;
+using Cart.DataAcces.Entities;
 using CartBusinessLogic.Factories;
 using CartBusinessLogic.Models;
 using CartBusinessLogic.Repositories;
-using System.Linq;
+using CartBusinessLogic.UnitOfWork;
 
-namespace CartBusinessLogic.UnitOfWork
+namespace CartBussinessLogic.UnitOfWork
 {
     public class CartUoW : BaseUoW, ICartUoW
     {
         private Dictionary<string, string> Session = new Dictionary<string, string>();
 
-        public IRepository<Cart> CartRepository => GetRepository<Cart>();
+        public IRepository<Cart.DataAcces.Entities.Cart> CartRepository => GetRepository<Cart.DataAcces.Entities.Cart>();
 
         public IRepository<CartItem> CartItemRepository => GetRepository<CartItem>();
 
@@ -115,7 +116,7 @@ namespace CartBusinessLogic.UnitOfWork
 
         public string AddCart(CartModel newCart)
         {
-            var cart = Mapper.Map<Cart>(newCart);
+            var cart = Mapper.Map<Cart.DataAcces.Entities.Cart>(newCart);
 
             CartRepository.Add(cart);
 

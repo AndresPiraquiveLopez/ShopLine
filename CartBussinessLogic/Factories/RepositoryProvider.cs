@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Threading.Tasks;
-using CartDataAcces.Entities;
+using Cart.DataAcces.Entities;
+using CartBusinessLogic.Factories;
 using CartBusinessLogic.Repositories;
 
-namespace CartBusinessLogic.Factories
+namespace CartBussinessLogic.Factories
 {
     public class RepositoryProvider : IRepositoryProvider
     {
