@@ -119,7 +119,11 @@ namespace InventoryUoWTest
         public void AdjStock_CallCommit()
         {
 
-            var stockModel = _fixture.Create<StockModel>();
+            var stockModel = _fixture.Build<StockModel>()
+                               .With(x => x.Name, "Andres")
+                               .Create();
+
+          
 
             var stockMock = _mock.CreateRepository<Stock>().GetAll();
 
@@ -131,7 +135,6 @@ namespace InventoryUoWTest
 
             //assert
             Assert.IsTrue(_mock.CommitCallCount > 0);
-        }
-
+        }       
     }
 }

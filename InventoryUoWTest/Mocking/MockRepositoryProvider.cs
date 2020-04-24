@@ -58,13 +58,26 @@ namespace InventoryUoWTest.Mocking
             return MakeRepository<T>();
         }
 
+        public IRepository<T> CreateRepository<T>(List<T> entities) where T : class
+        {
+            //look for T dictionary cache under typeof(T)
+            _repositories.TryGetValue(typeof(T), out var repository);
+            if (repository != null)
+            {
+                return (IRepository<T>)repository;
+            }
+
+            //if not found then create and add to dictionary cache
+            return MakeRepository<T>(entities);
+        }
+
         public void SaveChanges()
         {
             //increase the number of times commit is called
             CommitCallCount++;
         }
 
-        private IRepository<T> MakeRepository<T>() where T : class
+        protected virtual IRepository<T> MakeRepository<T>(List<T> entities = null) where T : class
         {
             var mock = new Mock<IRepository<T>>();
 

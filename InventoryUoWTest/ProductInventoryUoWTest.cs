@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using AutoFixture;
 using Inventory.DataAcces.Entities;
 using InventoryBusinessLogic.Initializers;
@@ -30,6 +26,7 @@ namespace InventoryUoWTest
             _mock = new MockRepositoryProvider(_fixture);
             MapConfig.RegisterMapping();
 
+            //sut (System under test)
             _sut = new ProductInventoryUoW(_mock);
         }
 
@@ -41,7 +38,7 @@ namespace InventoryUoWTest
 
             _mock.CreateRepository<Product>().GetAll().First();
 
-            //act
+            //act         
             _sut.AddProduct(product);
 
             //assert
@@ -49,25 +46,43 @@ namespace InventoryUoWTest
         }
 
         [TestMethod]
-        public void GetProduct()
+        public void AddProduct_CallCommit_With_Autofixture()
         {
             //arange                                   
-            var productModel = _fixture.Create<ProductModel>();
-
-           var product = _mock.CreateRepository<Product>().GetAll().First();
-            product.Name = productModel.Name;
-            product.Code = productModel.Code;
-            product.ProductId = productModel.Id;           
-
-           var productCategory = _mock.CreateRepository<ProductCategory>().GetAll().First();
-            productCategory.ProductCategoryId = product.ProductCategoryId;
-
+            var newProduct = _fixture.Create<ProductModel>();
+                  
             //act
-            var result = _sut.GetProduct(productModel.Name, productModel.Code);
+             _sut.AddProduct(newProduct);
 
             //assert
-            Assert.AreEqual(result.Name, productModel.Name);
-            Assert.AreEqual(result.Code, productModel.Code);          
+            Assert.IsTrue(_mock.CommitCallCount > 0);
+        }
+
+        [TestMethod]
+        public void AddProduct_CallCommit_WithoutAutofixture()
+        {
+            //arange
+            var newProduct = new ProductModel
+            {
+                Id = 1,
+                Code = "CAD",
+                Cost = 10,
+                Name = "Billet Metro",
+                ProductCategoryId = 1,
+                ProductCategory = new ProductCategoryModel
+                {
+                    Id = 1,
+                    Category = "Test",                    
+                },
+                SellPrice = 10
+            };          
+
+            //act
+           _sut.AddProduct(newProduct);
+
+            //assert
+            Assert.IsTrue(_mock.CommitCallCount > 0);
+
         }
 
 
